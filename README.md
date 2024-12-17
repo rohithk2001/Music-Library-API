@@ -75,50 +75,62 @@ JWT_SECRET=your-jwt-secret
 ```
 
 ---
-
 ## Routes
 
-### User Routes
+### Auth Routes
 
 | Method | Endpoint                 | Description          |
 |--------|--------------------------|----------------------|
 | POST   | `/auth/signup`           | User signup          |
 | POST   | `/auth/login`            | User login           |
-| POST   | `/auth/logout`           | Logout user          |
+| GET    | `/auth/logout`           | Logout user          |
+
+### User Routes
+
+| Method | Endpoint                 | Description                |
+|--------|--------------------------|----------------------------|
+| POST   | `/add-user`           | Add a new artist           |
+| GET    | `/`           | Get user details         |
+| PUT    | `/update-password`           | Update artist details      |
+| DELETE | `/:id`           | Delete an artist           |
 
 ### Artist Routes
 
 | Method | Endpoint                 | Description                |
 |--------|--------------------------|----------------------------|
-| POST   | `/artists/add`           | Add a new artist           |
-| GET    | `/artists/:id`           | Get artist details         |
-| PATCH  | `/artists/:id`           | Update artist details      |
-| DELETE | `/artists/:id`           | Delete an artist           |
+| POST   | `/artist/add-artist`           | Add a new artist           |
+| GET    | `/artist`           | Get artist details         |
+| GET    | `/artist/:id`           | Get artist details of particular id        |
+| PUT    | `/artist/:id`           | Update artist details      |
+| DELETE | `/artist/:id`           | Delete an artist           |
 
 ### Album Routes
 
 | Method | Endpoint                 | Description                |
 |--------|--------------------------|----------------------------|
-| POST   | `/albums/add`            | Add a new album            |
-| GET    | `/albums/:id`            | Get album details          |
-| PATCH  | `/albums/:id`            | Update album details       |
-| DELETE | `/albums/:id`            | Delete an album            |
+| POST   | `/album/add-album`            | Add a new album            |
+| GET    | `/album`            | Get album details          |
+| GET    | `/album/:id`            | Get album details of particular id        |
+| PUT  | `/album/:id`            | Update album details       |
+| DELETE | `/album/:id`            | Delete an album            |
 
 ### Track Routes
 
 | Method | Endpoint                 | Description                |
 |--------|--------------------------|----------------------------|
-| POST   | `/tracks/add`            | Add a new track            |
-| GET    | `/tracks/:id`            | Get track details          |
-| PATCH  | `/tracks/:id`            | Update track details       |
-| DELETE | `/tracks/:id`            | Delete a track             |
+| POST   | `/track/add-track`            | Add a new track            |
+| GET    | `/track/:id`            | Get track details of particular id        |
+| GET    | `/track`            | Get track details          |
+| PUT  | `/track/:id`            | Update track details       |
+| DELETE | `/track/:id`            | Delete a track             |
 
 ### Favorites Routes
 
 | Method | Endpoint                 | Description                |
 |--------|--------------------------|----------------------------|
-| POST   | `/favorites/add/:item_id` | Add favorite (by ID)       |
-| GET    | `/favorites`             | Retrieve user favorites    |
+| POST   | `/favorite/add-favorite` | Add favorite (by ID)       |
+| GET    | `/favorite/:category`             | Retrieve user favorites    |
+| DELETE    | `/favorite/remove-favorite/:id`             | Retrieve user favorites    |
 
 ---
 
