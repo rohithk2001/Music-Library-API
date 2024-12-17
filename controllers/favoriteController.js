@@ -57,12 +57,23 @@ const addFavorite = async (req, res) => {
   }
 
   try {
-    // Check if the resource exists
     let item;
-    if (category === 'artist') item = await Artist.findById(item_id);
-    if (category === 'album') item = await Album.findById(item_id);
-    if (category === 'track') item = await Track.findById(item_id);
 
+    console.log('Incoming Item ID:', item_id); // Debugging
+    console.log('Category:', category); // Debugging
+
+    // Query only by custom IDs
+    if (category === 'artist') {
+      item = await Artist.findOne({ artist_id: item_id });
+    } else if (category === 'album') {
+      item = await Album.findOne({ album_id: item_id });
+    } else if (category === 'track') {
+      item = await Track.findOne({ track_id: item_id });
+    }
+
+    console.log('Query Result:', item); // Debugging
+
+    // If item is not found, return 404
     if (!item) {
       return res.status(404).json({
         status: 404,
@@ -78,17 +89,17 @@ const addFavorite = async (req, res) => {
     // If the favorite document doesn't exist, create one
     if (!favorite) {
       favorite = new Favorite({
-        user: req.user.user_id, // User ID from the JWT token
+        user: req.user.user_id,
       });
     }
 
     // Add the item to the corresponding category field if it's not already there
-    if (category === 'artist' && !favorite.artists.includes(item._id)) {
-      favorite.artists.push(item._id);  // Add artist to the favorite
-    } else if (category === 'album' && !favorite.albums.includes(item._id)) {
-      favorite.albums.push(item._id);  // Add album to the favorite
-    } else if (category === 'track' && !favorite.tracks.includes(item._id)) {
-      favorite.tracks.push(item._id);  // Add track to the favorite
+    if (category === 'artist' && !favorite.artists.includes(item.artistId)) {
+      favorite.artists.push(item.artist_id);  // Add artistId to favorites
+    } else if (category === 'album' && !favorite.albums.includes(item.album_id)) {
+      favorite.albums.push(item.album_id);  // Add albumId to favorites
+    } else if (category === 'track' && !favorite.tracks.includes(item.trackId)) {
+      favorite.tracks.push(item.track_id);  // Add trackId to favorites
     }
 
     // Save the favorite to the database
