@@ -221,7 +221,3 @@ Contributions are welcome! Follow these steps:
 4. Open a Pull Request.
 
 ---
-
-## License
-
-This project is licensed under the **MIT License**.
