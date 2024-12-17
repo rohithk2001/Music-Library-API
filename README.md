@@ -136,41 +136,66 @@ JWT_SECRET=your-jwt-secret
 
 ## Usage
 
-1. **Sign Up**:
+### 1. Sign Up:
    ```http
    POST /auth/signup
    Content-Type: application/json
-
-   {
-     "username": "user123",
-     "email": "user@example.com",
-     "password": "password123"
-   }
    ```
+  #### Body
 
-2. **Login**:
-   ```http
-   POST /auth/login
-   Content-Type: application/json
-
+  ```
    {
      "email": "user@example.com",
      "password": "password123"
-   }
-   ```
-
-3. **Add a Favorite**:
-   ```http
-   POST /favorites/add/:item_id
-   Authorization: Bearer <JWT_TOKEN>
-
-   {
-     "category": "track"
    }
    ```
 
 ---
+### 2. login:
+   ```http
+   POST /auth/signup
+   Content-Type: application/json
+   ```
+  #### Body
 
+  ```
+   {
+     "email": "user@example.com",
+     "password": "password123"
+   }
+   ```
+
+---
+#
+After logging in u make sure add the the Authorization Token 
+
+
+### 3. logout:
+   ```http
+POST /auth/logout
+Authorization: Bearer <token>
+
+   ```
+  #### Body
+
+  ```
+   {}
+   ```
+
+---
+### 4. Get All Users
+   ```http
+   GET /users
+Authorization: Bearer <token>
+
+   ```
+  #### Body
+
+  ```
+   {}
+   ```
+
+---
 ## Error Handling
 
 Standardized error responses:
